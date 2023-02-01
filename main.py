@@ -1,13 +1,14 @@
+import argparse
 import logging
 import os
 
 from src.MergingFunctions import (
-    read_file,
-    read_csv_to_dict,
+    dict_to_csv,
     get_csv_files,
     index_key,
     merge_dict,
-    dict_to_csv,
+    read_csv_to_dict,
+    read_file,
     write_to,
 )
 
@@ -17,9 +18,15 @@ logging.basicConfig(
     datefmt="%Y-%m-%d %H:%M:%S",
 )
 
-path = "./data/"
+parser = argparse.ArgumentParser()
+parser.add_argument("--input_path", type=str)
+parser.add_argument("--output_path", type=str)
+
+args = parser.parse_args()
+
+path = args.input_path
 key = "ID"
-output_path = "./output/output.csv"
+output_path = args.output_path
 
 
 def main():
